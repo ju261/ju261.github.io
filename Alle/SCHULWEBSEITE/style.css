@@ -1,0 +1,408 @@
+/* Allgemeine Stile */
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.8em;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+}
+
+nav ul li {
+    display: inline-block; /* Ändere zu 'block' für vertikale Navigation */
+    margin: 0 10px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: background-color 0.2s ease-in-out; /* Sanfter Übergang für Hover */
+}
+
+nav ul li a:hover,
+nav ul li a.active { /* Hebt den aktiven Link hervor */
+    background-color: #555;
+}
+
+main {
+    flex-grow: 1; /* Sorgt dafür, dass main den verfügbaren Platz einnimmt */
+    padding: 20px;
+    max-width: 1200px; /* Begrenzt die Breite für bessere Lesbarkeit */
+    margin: 20px auto; /* Zentriert den Hauptinhalt */
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border-radius: 8px;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    margin-top: auto; /* Drückt den Footer nach unten */
+    font-size: 0.8em;
+}
+
+/* Spezifische Stile für Stundenplan */
+.stundenplan-main {
+    display: flex;
+    flex-direction: column; /* Elemente untereinander */
+}
+
+.stundenplan-container {
+    display: flex;
+    flex-wrap: wrap; /* Erlaubt Umbruch auf kleineren Bildschirmen */
+    gap: 20px; /* Abstand zwischen Grid und Fächerliste */
+}
+
+#stundenplan-grid {
+   flex: 3; /* Nimmt mehr Platz ein als die Fächerliste */
+   overflow-x: auto; /* Erlaubt horizontales Scrollen falls nötig */
+   min-width: 60%; /* Stellt sicher, dass das Grid genug Platz hat */
+}
+
+#stundenplan-grid table {
+    width: 100%;
+    border-collapse: collapse; /* Schöne Tabellenränder */
+    table-layout: fixed; /* Feste Spaltenbreiten */
+}
+
+#stundenplan-grid th,
+#stundenplan-grid td {
+    border: 1px solid #ccc;
+    padding: 5px;
+    text-align: center;
+    height: 50px; /* Feste Höhe für Zellen */
+    min-width: 80px; /* Mindestbreite */
+    vertical-align: middle; /* Text mittig ausrichten */
+    font-size: 0.9em;
+    overflow: hidden; /* Verhindert, dass Text überläuft */
+    text-overflow: ellipsis; /* Fügt ... hinzu, wenn Text zu lang */
+    white-space: nowrap; /* Verhindert Zeilenumbruch in Zellen */
+}
+#stundenplan-grid th {
+    background-color: #e9e9e9;
+}
+#stundenplan-grid td.stunde {
+    background-color: #fff;
+    transition: background-color 0.2s ease-in-out, border-style 0.2s ease-in-out; /* Übergänge für Drag&Drop */
+}
+#stundenplan-grid td.stunde.drag-over {
+    background-color: #e0ffe0; /* Helleres Grün */
+    border-style: dashed;
+    border-color: #8fbc8f; /* Dunkleres Grün für den Rand */
+}
+#stundenplan-grid td.inactive {
+    background-color: #f0f0f0;
+    font-style: italic;
+    color: #aaa;
+}
+#stundenplan-grid .pause-row td {
+    background-color: #f0f0f0;
+    font-style: italic;
+    color: #666;
+    height: 30px;
+    vertical-align: middle;
+}
+
+
+#faecher-container {
+    flex: 1;
+    min-width: 180px;
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    align-self: flex-start; /* Bleibt oben, auch wenn Grid länger wird */
+}
+
+#faecher-liste {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.fach {
+    background-color: #d1e7ff;
+    border: 1px solid #a6c1e1;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: grab;
+    text-align: center;
+    font-size: 0.9em;
+    transition: background-color 0.2s, opacity 0.1s ease-in-out; /* Übergänge */
+    user-select: none; /* Verhindert Textauswahl beim Ziehen */
+}
+.fach:hover {
+    background-color: #b9d7ff;
+}
+.fach:active { /* Wird während des Ziehens angewendet */
+    cursor: grabbing;
+    opacity: 0.7;
+    transform: scale(1.05); /* Kleiner Effekt beim Greifen */
+}
+
+
+/* Spezifische Stile für Noten */
+#noten-eingabe form div {
+    margin-bottom: 15px;
+}
+
+#noten-eingabe label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+#noten-eingabe input[type="number"],
+#noten-eingabe select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* Verhindert, dass Padding die Breite beeinflusst */
+}
+
+#noten-eingabe button {
+    padding: 10px 15px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+#noten-eingabe button:hover {
+    background-color: #218838;
+}
+
+#noten-anzeige h3 {
+    margin-top: 30px;
+    margin-bottom: 15px; /* Etwas mehr Abstand nach unten */
+}
+
+#noten-liste .fach-noten {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border: 1px solid #eee;
+    border-radius: 5px;
+}
+
+#noten-liste h4 {
+    margin-top: 0;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
+    margin-bottom: 10px; /* Abstand zur Liste */
+}
+
+#noten-liste ul {
+    list-style: none;
+    padding-left: 0;
+}
+#noten-liste li {
+    padding: 6px 0; /* Etwas mehr vertikaler Platz */
+    border-bottom: 1px dotted #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; /* Erlaubt Umbruch bei schmalen Bildschirmen */
+    gap: 5px; /* Kleiner Abstand zwischen Text und Button */
+}
+#noten-liste li:last-child {
+    border-bottom: none;
+}
+
+#noten-liste .note-details { /* Wird evtl. nicht direkt genutzt, schadet aber nicht */
+    font-size: 0.9em; /* Etwas größer für Lesbarkeit */
+    color: #555;
+    flex-grow: 1; /* Nimmt verfügbaren Platz ein */
+    margin-right: 10px; /* Abstand zum Löschen-Button */
+}
+
+#noten-liste .durchschnitt {
+    font-weight: bold;
+    margin-top: 10px;
+    color: #007bff;
+    text-align: right; /* Rechtsbündig für bessere Übersicht */
+}
+
+#noten-liste .delete-note-btn {
+    padding: 4px 10px; /* Etwas größer */
+    font-size: 0.85em;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.2s; /* Übergang für Hover */
+    white-space: nowrap; /* Verhindert Umbruch des Button-Textes */
+}
+#noten-liste .delete-note-btn:hover {
+    background-color: #c82333;
+}
+
+
+/* --- Styles für Homepage Widgets --- */
+.dashboard-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.widget {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #eee;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column; /* Wichtig für interne Anordnung */
+}
+
+.widget h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    color: #333;
+}
+
+/* Wochen-Fortschritt */
+#wochen-fortschritt .progress-bar-container {
+    width: 100%;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    height: 20px;
+    margin-top: 10px;
+    overflow: hidden; /* Stellt sicher, dass der innere Balken die Ecken nicht überragt */
+}
+
+#wochen-fortschritt .progress-bar {
+    height: 100%;
+    width: 0%; /* Startbreite, wird per JS gesetzt */
+    background-color: #4caf50;
+    border-radius: 5px; /* Gleicher Radius wie Container */
+    transition: width 0.6s ease-in-out; /* NEU: Sanfter Übergang für die Breite */
+    text-align: center;
+    color: white;
+    line-height: 20px; /* Zentriert den Text vertikal */
+    font-size: 0.8em;
+    font-weight: bold; /* Hebt den Text hervor */
+    white-space: nowrap; /* Verhindert Umbruch des %-Wertes */
+}
+#wochen-fortschritt p {
+    margin-top: 10px;
+    font-size: 0.9em;
+    color: #555;
+    text-align: center; /* Zentriert die Texte unter dem Balken */
+}
+#wochen-fortschritt p:first-of-type { /* Der Text "Woche X von Y" */
+    margin-bottom: 5px; /* Kleinerer Abstand zum Balken */
+}
+
+/* Gesamt-Durchschnitt */
+#gesamt-durchschnitt .durchschnitt-wert {
+    font-size: 2.5em;
+    font-weight: bold;
+    color: #007bff;
+    text-align: center;
+    margin: 15px 0;
+    flex-grow: 1; /* Nimmt Platz ein, um Info unten zu halten */
+    display: flex; /* Erlaubt Zentrierung */
+    align-items: center; /* Vertikal zentrieren */
+    justify-content: center; /* Horizontal zentrieren */
+    min-height: 50px; /* Mindesthöhe */
+}
+#gesamt-durchschnitt #anzahl-noten-info {
+    font-size: 0.8em;
+    color: #6c757d;
+    text-align: center;
+    margin-top: auto; /* Schiebt es nach unten */
+    padding-top: 10px; /* Abstand zum Durchschnittswert */
+}
+
+/* Heute-Info */
+#heute-info { /* Widget selbst */
+     min-height: 150px; /* Mindesthöhe geben, damit Formular unten bleibt */
+}
+
+#heute-info h4 { /* Wird aktuell nicht verwendet, aber schadet nicht */
+    margin-top: 15px;
+    margin-bottom: 5px;
+    font-size: 1em;
+    color: #555;
+}
+
+/* NEU: Style für den Notiz-Anzeigebereich */
+#heute-notiz-anzeige {
+    background-color: #fff; /* Leichter Kontrast zum Widget-Hintergrund */
+    border: 1px solid #e0e0e0; /* Etwas weicherer Rand */
+    border-radius: 4px;
+    padding: 12px; /* Etwas mehr Padding */
+    margin: 10px 0 15px 0; /* Abstand oben/unten */
+    min-height: 50px; /* Mindesthöhe, damit es sichtbar ist */
+    font-size: 0.95em;
+    color: #333;
+    line-height: 1.5; /* Bessere Lesbarkeit */
+    white-space: pre-wrap; /* Erhält Zeilenumbrüche aus dem Text */
+    word-wrap: break-word; /* Bricht lange Wörter um */
+    flex-grow: 1; /* Nimmt verfügbaren Platz im Widget ein, drückt Formular nach unten */
+    overflow-y: auto; /* Scrollbar, falls die Notiz sehr lang wird */
+    max-height: 150px; /* Maximale Höhe bevor Scrollen beginnt */
+}
+
+#heute-notiz-anzeige.placeholder { /* Stil für Standardtext */
+     color: #777;
+     font-style: italic;
+}
+
+
+/* Styles für das Notiz-Formular */
+#heute-info #neue-notiz-form {
+    display: flex;
+    margin-top: auto; /* Drückt das Formular nach unten, wenn Platz ist */
+    gap: 8px; /* Etwas mehr Abstand */
+}
+#heute-info #neue-notiz-input {
+    flex-grow: 1; /* Nimmt verfügbaren Platz ein */
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+#heute-info #neue-notiz-form button {
+    padding: 8px 15px; /* Etwas breiter */
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    white-space: nowrap; /* Verhindert Umbruch */
+    transition: background-color 0.2s;
+}
+#heute-info #neue-notiz-form button:hover {
+    background-color: #0056b3;
+}

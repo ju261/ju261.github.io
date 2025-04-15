@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIXAM</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+        }
+        .model {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .model img {
+            max-width: 100%;
+            height: auto;
+            display: block; /* Verhindert unerwünschten Abstand unter dem Bild */
+            margin-bottom: 5px; /* Etwas Abstand zum Quellennachweis */
+        }
+        .model .source {
+            font-size: 0.8em; /* Kleinere Schrift */
+            color: #777; /* Graue Farbe für weniger Aufdringlichkeit */
+            margin-top: 2px;
+        }
+        .model a {
+            display: block;
+            margin-top: 10px;
+            text-decoration: none;
+        }
+        .model button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .model button:hover {
+            background-color: #0056b3;
+        }
+        .back-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .back-link button {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .back-link button:hover {
+            background-color: darkred;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>AIXAM</h1>
+        <div class="model">
+            <h2>City GTO</h2>
+            <img src="/Aixam/Bilder/city-gto.png" alt="">
+            <p class="source">Quelle: https://aixam.de/wp-content/uploads//City-GTO-2.jpg</p>
+            <a href="https://aixam.de/fahrzeuge/aixam/city-gto/" target="_blank">
+                <button>Webseite</button>
+            </a>
+        </div>
+        <div class="back-link">
+            <a href="/Aixam/index.html">
+                <button>Zurück!</button>
+            </a>
+        </div>
+    </div>
+</body>
+</html>

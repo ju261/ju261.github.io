@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mein Moderner Kalender</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> </head>
+<body class="light-theme">
+
+    <button id="settings-button" class="settings-button" title="Einstellungen öffnen">
+        <i class="fas fa-cog"></i>
+    </button>
+
+    <div class="overlay" id="overlay"></div>
+    <div class="settings-panel" id="settings-panel">
+        <h3><i class="fas fa-sliders-h icon-prefix"></i>Einstellungen</h3>
+        <div class="setting-option">
+            <label for="theme-select"><i class="fas fa-palette icon-prefix"></i>Theme:</label>
+            <select id="theme-select">
+                <option value="light">Hell</option>
+                <option value="dark">Dunkel</option>
+            </select>
+        </div>
+        <div class="setting-option">
+            <label><i class="fas fa-calendar-alt icon-prefix"></i>Ansicht:</label>
+            <div class="view-buttons-group">
+                <button data-view="month" class="view-button active">Monat</button>
+                <button data-view="week" class="view-button">Woche</button>
+                <button data-view="workweek" class="view-button">Arbeitswoche</button>
+            </div>
+        </div>
+         <button id="close-settings-button" class="close-button"><i class="fas fa-times icon-prefix"></i>Schließen</button>
+    </div>
+
+    <div class="calendar-container">
+        <h1>Mein Kalender</h1>
+
+        <div class="calendar">
+            <div class="month">
+                <button id="prev-button" title="Vorheriger Zeitraum">&lt;</button>
+                <div class="month-header">
+                     <h2 id="calendar-title">Lade...</h2>
+                    <p id="calendar-subtitle">Lade...</p>
+                </div>
+                <button id="next-button" title="Nächster Zeitraum">&gt;</button>
+            </div>
+            <ul class="weekdays" id="weekdays-header">
+                </ul>
+            <ul class="days" id="days-grid">
+                </ul>
+        </div>
+
+        <div id="event-section">
+             <h3>Termine am <span id="selected-date-display">--.--.----</span></h3>
+            <ul id="event-list">
+                <li class="no-events">Kein Tag ausgewählt</li>
+            </ul>
+            <div id="add-event-form" style="display: none;">
+                 <h4><i class="fas fa-plus-circle icon-prefix"></i>Neuen Termin hinzufügen:</h4>
+                 <input type="time" id="event-time-input" title="Uhrzeit des Termins">
+                 <input type="text" id="event-desc-input" placeholder="Terminbeschreibung..." title="Beschreibung des Termins">
+                 <button id="add-event-button" title="Termin hinzufügen"><i class="fas fa-check icon-prefix"></i>Hinzufügen</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modernes Kanban Board V3</title> <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body> <div class="top-right-buttons">
+        <button id="helpBtn" class="help-button" aria-label="Hilfe anzeigen">
+             <i class="fas fa-question-circle"></i>
+        </button>
+        <button id="settingsBtn" class="settings-button" aria-label="Einstellungen öffnen">
+            <i class="fas fa-cog"></i>
+        </button>
+    </div>
+
+    <h1>Mein Kanban Board</h1>
+
+    <div class="kanban-board" id="kanbanBoard">
+        <div class="kanban-column">
+            <h2>Zu erledigen</h2>
+            <div class="cards" id="todo-cards" data-column-id="todo">
+                <div class="card" id="card-1" draggable="true" data-description="Das gesamte Konzept für das Projekt muss noch ausgearbeitet werden. Details zu Zielgruppen und Monetarisierung fehlen noch.">
+                    <span class="card-title">Konzept entwickeln</span>
+                    <button class="delete-card-btn">&times;</button>
+                </div>
+                </div>
+            <button class="add-card-btn" data-column="todo-cards">Neue Aufgabe +</button>
+        </div>
+        <div class="kanban-column">
+             <h2>In Arbeit</h2>
+             <div class="cards" id="inprogress-cards" data-column-id="inprogress">
+                 <div class="card" id="card-4" draggable="true" data-description="Alle CSS-Regeln definieren und das Layout gestalten. Responsiveness beachten!">
+                     <span class="card-title">CSS Styling erstellen</span>
+                     <button class="delete-card-btn">&times;</button>
+                 </div>
+             </div>
+              <button class="add-card-btn" data-column="inprogress-cards">Neue Aufgabe +</button>
+         </div>
+        <div class="kanban-column">
+             <h2>Fertig</h2>
+             <div class="cards" id="done-cards" data-column-id="done">
+             </div>
+              <button class="add-card-btn" data-column="done-cards">Neue Aufgabe +</button>
+         </div>
+    </div>
+
+    <div id="modalOverlay" class="modal-overlay"></div>
+    <div id="descriptionModal" class="modal">
+        <button class="close desc-close">&times;</button> <h3 id="modalTitle">Aufgabenbeschreibung</h3>
+        <div id="modalDescriptionDisplay" class="description-display"></div>
+        <textarea id="modalDescriptionInput" rows="6" style="display: none;" placeholder="Füge hier eine detaillierte Beschreibung hinzu..."></textarea>
+        <div class="modal-actions">
+             <button id="editDescriptionBtn">Bearbeiten</button>
+             <button id="saveDescriptionBtn" style="display: none;">Speichern</button>
+        </div>
+    </div>
+
+    <div id="helpModalOverlay" class="modal-overlay"></div>
+    <div id="helpModal" class="modal help-modal">
+        <button class="close help-close">&times;</button>
+        <h3>Anleitung</h3>
+        <div class="help-content">
+             <h4>Grundlagen</h4><ul><li><strong>Aufgaben verschieben:</strong> Klicken und ziehen Sie Aufgaben (Karten) per Drag & Drop zwischen den Spalten "Zu erledigen", "In Arbeit" und "Fertig".</li><li><strong>Details ansehen/bearbeiten:</strong> Machen Sie einen Doppelklick auf eine Aufgabe, um die Beschreibung anzuzeigen. Klicken Sie im Fenster auf "Bearbeiten", um den Text zu ändern, und dann auf "Speichern". Der Titel der Karte bleibt unverändert.</li></ul><h4>Aufgaben verwalten</h4><ul><li><strong>Neue Aufgabe erstellen:</strong> Klicken Sie auf den Button "Neue Aufgabe +" am unteren Ende der gewünschten Spalte und geben Sie einen Titel ein.</li><li><strong>Aufgabe löschen:</strong> Bewegen Sie den Mauszeiger über eine Aufgabe. Oben rechts erscheint ein kleines "×". Klicken Sie darauf und bestätigen Sie die Löschung.</li></ul><h4>Einstellungen</h4><ul><li><strong>Farbe anpassen:</strong> Klicken Sie auf das Zahnrad (<i class="fas fa-cog"></i>) oben rechts. Im Einstellungsfenster können Sie eine neue Akzentfarbe für das Board auswählen. Die Farbe wird gespeichert.</li><li><strong>Hilfe schließen:</strong> Klicken Sie auf das "×", irgendwo außerhalb dieses Fensters oder drücken Sie die Escape-Taste.</li></ul>
+        </div>
+    </div>
+
+    <div id="settingsModalOverlay" class="modal-overlay"></div>
+    <div id="settingsModal" class="modal settings-modal">
+        <button class="close settings-close">&times;</button> <h3>Einstellungen</h3>
+        <div class="settings-content">
+            <div class="setting-item">
+                <label for="colorPicker">Akzentfarbe:</label>
+                <input type="color" id="colorPicker">
+            </div>
+
+            <div class="setting-item">
+                 <fieldset>
+                    <legend>Theme</legend>
+                    <div class="radio-group">
+                        <label>
+                            <input type="radio" name="theme" value="light" id="themeLight"> Hell
+                        </label>
+                        <label>
+                            <input type="radio" name="theme" value="dark" id="themeDark"> Dunkel
+                        </label>
+                    </div>
+                 </fieldset>
+            </div>
+        </div>
+         </div>
+    <script src="script.js"></script>
+</body>
+</html>

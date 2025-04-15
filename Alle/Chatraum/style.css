@@ -1,0 +1,419 @@
+/* --- CSS Variablen Definition --- */
+:root {
+    /* Helles Theme (Standard) */
+    --primary-color-base: #0078D7; /* Ursprüngliche Farbe speichern */
+    --secondary-color: #107C10;
+    --danger-color: #D83B01;
+    --warning-color: #FFB900;
+    --light-gray: #f0f0f0;
+    --medium-gray: #d0d0d0;
+    --dark-gray: #605e5c;
+    --text-color-base: #323130; /* Ursprüngliche Textfarbe */
+    --bg-gradient: linear-gradient(145deg, #eaf6ff 0%, #f5f5fa 100%); /* Original Gradient */
+    --card-bg-color-base: rgba(255, 255, 255, 0.9); /* Original Karten-BG */
+    --sidebar-bg-base: rgba(245, 248, 250, 0.9); /* Original Sidebar BG */
+    --border-radius: 6px;
+    --box-shadow-base: 0 5px 15px rgba(0, 0, 0, 0.08); /* Original Schatten */
+    --transition-speed: 0.3s;
+    --transition-func: ease;
+    --font-family: "Segoe UI", "Segoe UI Web (West European)", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+    --sidebar-width: 240px;
+
+    /* --- Variablen für Theme/Akzent (werden dynamisch angepasst) --- */
+    --accent-color: var(--primary-color-base); /* Standard Akzent = Original Primär */
+    --bg-color: #f8f9fa; /* Heller Hintergrund */
+    --text-color: var(--text-color-base); /* Heller Text */
+    --text-muted-color: #6c757d; /* Heller gedämpfter Text */
+    --panel-bg: #ffffff; /* Heller Panel/Modal BG */
+    --card-bg-color: var(--card-bg-color-base); /* Heller Karten BG = Original */
+    --sidebar-bg: var(--sidebar-bg-base); /* Heller Sidebar BG = Original */
+    --border-color: #dee2e6; /* Heller Rand */
+    --border-color-light: #e9ecef; /* Heller heller Rand */
+    --input-bg: #ffffff; /* Heller Input BG */
+    --input-border: #ced4da; /* Heller Input Rand */
+    --button-bg: #ffffff; /* Heller Settings-Button BG */
+    --button-hover-bg: #e9ecef; /* Heller Settings-Button Hover BG */
+    --card-shadow: rgba(0, 0, 0, 0.1); /* Heller Schatten */
+    --panel-shadow: rgba(0, 0, 0, 0.15); /* Heller Panel Schatten */
+    --fieldset-border: #dee2e6; /* Heller Fieldset Rand */
+    --modal-overlay-bg: rgba(0, 0, 0, 0.55); /* Heller Overlay BG */
+}
+
+/* --- Dunkles Theme Variablen --- */
+body.dark-mode {
+    --accent-color: #4dabf7; /* Standard Akzent Dark (kann überschrieben werden) */
+    --secondary-color: #40c057;
+    --danger-color: #ff6b6b;
+    --warning-color: #fcc419;
+    --light-gray: #495057; /* Dunkles Pendant */
+    --medium-gray: #343a40; /* Dunkles Pendant */
+    --dark-gray: #adb5bd; /* Dunkles Pendant */
+    --text-color: #e9ecef; /* Dunkler Text */
+    --bg-gradient: linear-gradient(145deg, #2c3e50 0%, #34495e 100%); /* Dunkler Gradient */
+    --card-bg-color: rgba(73, 80, 87, 0.9); /* Dunkler Karten BG */
+    --sidebar-bg: rgba(42, 46, 51, 0.9); /* Dunkler Sidebar BG */
+    --box-shadow-base: 0 5px 15px rgba(0, 0, 0, 0.2); /* Dunkler Schatten */
+
+    --bg-color: #212529; /* Dunkler Hintergrund */
+    --text-muted-color: #adb5bd; /* Dunkler gedämpfter Text */
+    --panel-bg: #343a40; /* Dunkler Panel/Modal BG */
+    --border-color: #495057; /* Dunkler Rand */
+    --border-color-light: #343a40; /* Dunkler heller Rand */
+    --input-bg: #495057; /* Dunkler Input BG */
+    --input-border: #6c757d; /* Dunkler Input Rand */
+    --button-bg: #495057; /* Dunkler Settings-Button BG */
+    --button-hover-bg: #5a6268; /* Dunkler Settings-Button Hover BG */
+    --card-shadow: rgba(0, 0, 0, 0.4); /* Dunkler Schatten */
+    --panel-shadow: rgba(0, 0, 0, 0.3); /* Dunkler Panel Schatten */
+    --fieldset-border: #495057; /* Dunkler Fieldset Rand */
+    --modal-overlay-bg: rgba(0, 0, 0, 0.7); /* Dunkler Overlay BG */
+}
+
+/* --- Grundlegendes Styling --- */
+body {
+    font-family: var(--font-family);
+    line-height: 1.6;
+    /* WIEDERHERGESTELLT: Hintergrund abhängig vom Theme */
+    background: var(--bg-color); /* Einfache Farbe als Basis */
+    /* Optional: Gradient nur für Light-Mode oder anpassen */
+    /* background: var(--bg-gradient); */
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    position: relative;
+    transition: background-color var(--transition-speed) var(--transition-func),
+                color var(--transition-speed) var(--transition-func);
+}
+body:not(.dark-mode) { /* Gradient nur im Light Mode */
+    background: var(--bg-gradient);
+}
+
+
+/* --- Buttons oben rechts (Unverändert) --- */
+.top-right-buttons {
+    position: fixed; top: 20px; right: 20px; display: flex; gap: 10px; z-index: 1050;
+}
+.settings-button, .help-button {
+    background-color: var(--button-bg); border: 1px solid var(--border-color); color: var(--text-muted-color); border-radius: 50%; width: 45px; height: 45px; font-size: 1.2em; cursor: pointer; box-shadow: 0 2px 8px var(--card-shadow); display: flex; align-items: center; justify-content: center; transition: background-color var(--transition-speed) var(--transition-func), box-shadow var(--transition-speed) var(--transition-func), color var(--transition-speed) var(--transition-func), border-color var(--transition-speed) var(--transition-func); padding: 0; line-height: 1;
+}
+.settings-button:hover, .help-button:hover {
+    background-color: var(--button-hover-bg); box-shadow: 0 4px 12px var(--panel-shadow); color: var(--accent-color);
+}
+.settings-button .fa-cog { transition: transform 0.4s ease-in-out; }
+.settings-button:hover .fa-cog { transform: rotate(90deg); }
+
+/* --- Haupt-Layout Container --- */
+.app-layout {
+    display: flex;
+    min-height: 100vh;
+    /* Hintergrund wird vom Body geerbt oder kann hier explizit gesetzt werden */
+}
+
+/* --- Sidebar Styling (Angepasst an Theme-Variablen) --- */
+#sidebar {
+    width: var(--sidebar-width);
+    flex-shrink: 0;
+    background-color: var(--sidebar-bg); /* Dynamisch */
+    padding: 20px;
+    border-right: 1px solid var(--border-color); /* Dynamisch */
+    box-shadow: 3px 0 10px var(--card-shadow); /* Dynamisch */
+    display: flex;
+    flex-direction: column;
+     transition: background-color var(--transition-speed) var(--transition-func),
+                 border-color var(--transition-speed) var(--transition-func),
+                 box-shadow var(--transition-speed) var(--transition-func);
+}
+#sidebar h2 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--accent-color); /* Nutzt Akzentfarbe */
+    margin: 0 0 20px 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-color-light); /* Dynamisch */
+    transition: color var(--transition-speed) var(--transition-func),
+                border-color var(--transition-speed) var(--transition-func);
+}
+#listNav { list-style: none; padding: 0; margin: 0 0 20px 0; flex-grow: 1; overflow-y: auto; min-height: 100px; }
+#listNav button {
+    display: block; width: 100%; text-align: left; padding: 10px 15px; margin-bottom: 5px; border: none; background-color: transparent; border-radius: var(--border-radius); cursor: pointer; font-size: 0.95rem; font-weight: 500;
+    color: var(--text-color); /* Dynamisch */
+    transition: background-color var(--transition-speed) var(--transition-func),
+                color var(--transition-speed) var(--transition-func);
+}
+#listNav button:hover {
+    background-color: color-mix(in srgb, var(--accent-color) 10%, transparent); /* Leichter Akzent-BG */
+    color: var(--accent-color);
+}
+#listNav button.active {
+    background-color: var(--accent-color); /* Nutzt Akzentfarbe */
+    color: white; /* Kontrastfarbe, meist weiß */
+    font-weight: 600;
+}
+#listNav button:focus { outline: none; box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent-color) 30%, transparent) inset; }
+
+/* Bereich zum Hinzufügen/Löschen von Listen */
+.add-list-group { margin-top: auto; padding-top: 15px; border-top: 1px solid var(--border-color-light); /* Dynamisch */ }
+.add-list-group input[type="text"] {
+    width: calc(100% - 24px); padding: 8px 12px; border-radius: var(--border-radius); font-size: 0.9rem; margin-bottom: 8px; display: block;
+    border: 1px solid var(--input-border); /* Dynamisch */
+    background-color: var(--input-bg); /* Dynamisch */
+    color: var(--text-color); /* Dynamisch */
+    transition: background-color var(--transition-speed) var(--transition-func),
+                color var(--transition-speed) var(--transition-func),
+                border-color var(--transition-speed) var(--transition-func);
+}
+.add-list-group input[type="text"]:focus {
+     outline: none;
+     border-color: var(--accent-color); /* Nutzt Akzentfarbe */
+     box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent-color) 20%, transparent);
+}
+.add-list-group button { width: 100%; padding: 8px 15px; color: white; border: none; border-radius: var(--border-radius); cursor: pointer; font-size: 0.9rem; font-weight: 600; transition: background-color var(--transition-speed), transform var(--transition-speed); }
+.add-list-group button:active { transform: scale(0.98); }
+#addListButton { background-color: var(--secondary-color); margin-bottom: 8px; }
+#addListButton:hover { background-color: color-mix(in srgb, var(--secondary-color) 85%, black); }
+#deleteListButton { background-color: var(--danger-color); }
+#deleteListButton:hover { background-color: color-mix(in srgb, var(--danger-color) 85%, black); }
+#deleteListButton:disabled { background-color: var(--medium-gray); cursor: not-allowed; opacity: 0.7; }
+
+
+/* --- Haupt-Content Bereich --- */
+#main-content-wrapper {
+    flex-grow: 1;
+    padding: 30px 40px;
+    padding-right: 80px; /* Platz für fixen Button */
+    overflow-y: auto;
+    max-height: 100vh;
+    /* Hintergrund wird vom Body geerbt */
+    transition: padding var(--transition-speed) var(--transition-func);
+}
+
+/* --- Eingabebereich für Aufgaben (WIEDERHERGESTELLT/KORRIGIERT) --- */
+.controls-area {
+    margin-bottom: 40px;
+}
+.control-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    align-items: flex-end;
+}
+.control-group div { /* Container für Label + Input */ }
+.control-group label {
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: var(--text-muted-color); /* Dynamisch */
+    margin-bottom: 5px;
+    display: block;
+    width: 100%;
+}
+/* KORREKTUR: Spezifische Styles für Inputs im Control Group */
+.control-group input[type="text"],
+.control-group input[type="date"] {
+    padding: 12px 15px;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    height: 48px; /* Feste Höhe für Ausrichtung */
+    box-sizing: border-box; /* WICHTIG für Höhe */
+    width: 100%;
+    border: 1px solid var(--input-border); /* Dynamisch */
+    background-color: var(--input-bg); /* Dynamisch */
+    color: var(--text-color); /* Dynamisch */
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04) inset; /* Leichter Schatten */
+    transition: border-color var(--transition-speed) var(--transition-func),
+                box-shadow var(--transition-speed) var(--transition-func),
+                background-color var(--transition-speed) var(--transition-func),
+                color var(--transition-speed) var(--transition-func);
+}
+.control-group input[type="text"]:focus,
+.control-group input[type="date"]:focus {
+     outline: none;
+     border-color: var(--accent-color); /* Nutzt Akzentfarbe */
+     box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent-color) 20%, transparent);
+}
+#taskInput { flex: 3 1 250px; min-width: 200px; }
+#dueDateInput { color: var(--text-muted-color); } /* Leichter Kontrast für Datum */
+.date-input-container { flex: 1 1 160px; min-width: 160px; }
+
+#listSelect { display: none; }
+.control-group label[for="listSelect"] { display: none; }
+
+/* KORREKTUR: Spezifische Styles für Add Task Button */
+#addTaskButton {
+    flex: 0 0 auto;
+    padding: 12px 22px;
+    height: 48px; /* Gleiche Höhe wie Inputs */
+    box-sizing: border-box;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    background-color: var(--accent-color); /* Nutzt Akzentfarbe */
+    color: white; /* Kontrastfarbe */
+    transition: background-color var(--transition-speed) var(--transition-func),
+                transform var(--transition-speed) var(--transition-func),
+                box-shadow var(--transition-speed) var(--transition-func);
+}
+#addTaskButton:hover { background-color: color-mix(in srgb, var(--accent-color) 85%, black); }
+#addTaskButton:active { transform: scale(0.97); }
+#addTaskButton:focus { outline: none; box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent-color) 30%, transparent); }
+
+
+/* --- Aufgabenlisten-Bereiche (Angepasst an Theme) --- */
+#main-content {}
+.list-content-area {}
+.list-content { display: none; }
+.list-content.active { display: block; }
+.tasks-section { margin-top: 25px; }
+.tasks-section h3 {
+    margin: 0 0 15px 0;
+    color: var(--text-muted-color); /* Dynamisch */
+    font-size: 1.1rem;
+    font-weight: 600;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-color-light); /* Dynamisch */
+     transition: color var(--transition-speed) var(--transition-func),
+                 border-color var(--transition-speed) var(--transition-func);
+}
+.task-list { list-style: none; padding: 0; margin: 0; min-height: 50px; }
+.empty-list-message, .no-lists-message {
+     color: var(--text-muted-color); /* Dynamisch */
+     text-align: center;
+     padding: 30px 20px;
+     font-style: italic;
+     background-color: color-mix(in srgb, var(--panel-bg) 60%, transparent); /* Dynamisch, halbtransparent */
+     border-radius: var(--border-radius);
+     margin-top: 15px;
+     transition: background-color var(--transition-speed) var(--transition-func),
+                 color var(--transition-speed) var(--transition-func);
+}
+.task-list:empty + .empty-list-message { display: block; }
+.no-lists-message { font-size: 1.1rem; padding: 40px 20px; margin-top: 20px;}
+
+
+/* --- Task Item Styling (Angepasst an Theme) --- */
+.task-item {
+    background-color: var(--card-bg-color); /* Dynamisch */
+    padding: 12px 15px;
+    border-radius: var(--border-radius);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid var(--border-color); /* Dynamisch */
+    box-shadow: 0 1px 3px var(--card-shadow); /* Dynamisch */
+    transition: box-shadow var(--transition-speed) var(--transition-func),
+                background-color var(--transition-speed) var(--transition-func),
+                opacity var(--transition-speed) var(--transition-func),
+                border-color var(--transition-speed) var(--transition-func);
+    cursor: grab;
+}
+.task-item:hover {
+    box-shadow: 0 3px 8px var(--panel-shadow); /* Dynamisch */
+    background-color: var(--panel-bg); /* Dynamisch */
+}
+.task-content { flex-grow: 1; margin-right: 15px; display: flex; flex-direction: column; }
+.task-text { display: block; font-size: 1rem; font-weight: 500; word-break: break-word; color: var(--text-color); /* Dynamisch */ }
+.due-date {
+    font-size: 0.8rem; color: var(--text-muted-color); /* Dynamisch */
+    margin-top: 4px; display: inline-block;
+    background-color: var(--border-color-light); /* Dynamisch */
+    padding: 1px 6px; border-radius: 3px; align-self: flex-start;
+    transition: background-color var(--transition-speed) var(--transition-func),
+                 color var(--transition-speed) var(--transition-func);
+}
+
+/* Buttons innerhalb der Aufgabe */
+.task-actions { display: flex; gap: 8px; flex-shrink: 0; }
+.task-actions button {
+    border: 1px solid transparent; border-radius: 50%; width: 30px; height: 30px; font-size: 1rem; cursor: pointer; display: flex; align-items: center; justify-content: center;
+    color: var(--text-muted-color); /* Dynamisch */
+    background-color: var(--border-color-light); /* Dynamisch */
+     transition: background-color var(--transition-speed) var(--transition-func),
+                 transform var(--transition-speed) var(--transition-func),
+                 border-color var(--transition-speed) var(--transition-func),
+                 color var(--transition-speed) var(--transition-func);
+}
+.task-actions button:hover { background-color: var(--medium-gray); color: var(--panel-bg); } /* Generisches Hover */
+.task-actions button:active { transform: scale(0.92); }
+.task-actions button:focus { outline: none; border-color: var(--accent-color); box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent-color) 20%, transparent); }
+
+/* Spezifische Task-Action Buttons */
+.complete-button { color: var(--secondary-color); background-color: color-mix(in srgb, var(--secondary-color) 15%, transparent); }
+.complete-button:hover { background-color: var(--secondary-color); color: white; }
+.reactivate-button { color: var(--accent-color); background-color: color-mix(in srgb, var(--accent-color) 15%, transparent); }
+.reactivate-button:hover { background-color: var(--accent-color); color: white; }
+.delete-button { color: var(--danger-color); background-color: color-mix(in srgb, var(--danger-color) 15%, transparent); }
+.delete-button:hover { background-color: var(--danger-color); color: white;}
+
+/* Styling für erledigte Aufgaben */
+.task-item.completed {
+     background-color: color-mix(in srgb, var(--card-bg-color) 80%, transparent);
+     box-shadow: none;
+     border: 1px dashed var(--medium-gray); /* Dynamisch */
+     opacity: 0.8;
+}
+.task-item.completed .task-text { text-decoration: line-through; color: var(--text-muted-color); /* Dynamisch */ font-weight: normal; opacity: 0.7; }
+.task-item.completed .due-date { color: var(--text-muted-color); /* Dynamisch */ background-color: var(--border-color-light); /* Dynamisch */ }
+
+/* Styling für überfällige Aufgaben */
+.task-item.overdue { border-left: 4px solid var(--warning-color); padding-left: 11px; }
+.task-item.overdue .due-date { color: #fff; background-color: var(--warning-color); font-weight: bold; }
+
+/* Drag & Drop Styling (Unverändert) */
+.task-item.dragging { opacity: 0.5; cursor: grabbing; box-shadow: 0 8px 20px var(--panel-shadow); transform: scale(1.02); }
+.task-list.drag-over { background-color: color-mix(in srgb, var(--accent-color) 5%, transparent); outline: 2px dashed var(--accent-color); outline-offset: -2px; }
+
+
+/* --- Modal Styling (Unverändert, nutzt jetzt die Theme-Variablen) --- */
+.modal-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: var(--modal-overlay-bg); z-index: 1000; opacity: 0; visibility: hidden; transition: opacity var(--transition-speed) var(--transition-func), visibility 0s linear var(--transition-speed);
+}
+.modal {
+    position: fixed; top: 50%; left: 50%; background-color: var(--panel-bg); color: var(--text-color); padding: 25px 30px; border-radius: 10px; box-shadow: 0 5px 20px var(--panel-shadow); z-index: 1010; width: 90%; max-width: 500px; display: flex; flex-direction: column; max-height: 85vh; border: 1px solid var(--border-color); opacity: 0; visibility: hidden; transform: translate(-50%, -50%) scale(0.95); transition: opacity var(--transition-speed) var(--transition-func), transform var(--transition-speed) var(--transition-func), visibility 0s linear var(--transition-speed), background-color var(--transition-speed) var(--transition-func), color var(--transition-speed) var(--transition-func), border-color var(--transition-speed) var(--transition-func);
+}
+.modal.visible, .modal-overlay.visible {
+    opacity: 1; visibility: visible; transform: translate(-50%, -50%) scale(1); transition-delay: 0s;
+}
+.modal-overlay.visible { transform: none; }
+.modal h3 { margin-top: 0; margin-bottom: 15px; color: var(--text-color); text-align: center; flex-shrink: 0; }
+.modal button.close { position: absolute; top: 10px; right: 15px; background: none; border: none; font-size: 1.8em; color: var(--text-muted-color); cursor: pointer; line-height: 1; padding: 0; transition: color var(--transition-speed) var(--transition-func); }
+.modal button.close:hover { color: var(--text-color); }
+
+/* Einstellungs-Modal spezifisch (Unverändert) */
+.settings-modal { max-width: 400px; z-index: 1012; }
+.settings-modal .settings-content { display: flex; flex-direction: column; gap: 25px; flex-grow: 1; overflow-y: auto; padding: 10px 0; }
+.settings-modal .setting-item { display: flex; flex-direction: column; gap: 8px; }
+.settings-modal .setting-item label:not(.radio-group label) { font-weight: 500; color: var(--text-muted-color); font-size: 0.9em; margin-bottom: 4px; }
+.settings-modal input[type="color"] { width: 100%; height: 35px; border: 1px solid var(--input-border); border-radius: 4px; cursor: pointer; padding: 2px; box-sizing: border-box; background-color: var(--input-bg); transition: border-color var(--transition-speed) var(--transition-func), background-color var(--transition-speed) var(--transition-func); }
+.settings-modal fieldset { border: 1px solid var(--fieldset-border); border-radius: 5px; padding: 15px; margin: 0; transition: border-color var(--transition-speed) var(--transition-func); }
+.settings-modal legend { font-weight: 500; padding: 0 8px; color: var(--text-muted-color); font-size: 0.9em; transition: color var(--transition-speed) var(--transition-func); }
+.settings-modal .radio-group { display: flex; gap: 20px; justify-content: flex-start; padding-left: 5px; }
+.settings-modal .radio-group label { display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 1em; color: var(--text-color); transition: color var(--transition-speed) var(--transition-func); }
+.settings-modal input[type="radio"] { cursor: pointer; accent-color: var(--accent-color); width: 16px; height: 16px; transition: accent-color var(--transition-speed) var(--transition-func); }
+
+
+/* --- Responsivität (KORRIGIERT) --- */
+@media (max-width: 768px) {
+    .app-layout { flex-direction: column; }
+    #sidebar { width: 100%; max-height: 300px; overflow-y: auto; border-right: none; border-bottom: 1px solid var(--border-color); box-shadow: 0 3px 10px var(--card-shadow); }
+    .add-list-group { margin-top: 15px; }
+    #main-content-wrapper {
+        padding: 20px; /* Basis-Padding */
+        padding-top: 70px; /* Mehr Platz oben für fixe Buttons */
+        padding-right: 60px; /* Platz rechts für fixe Buttons */
+        max-height: none;
+    }
+    .top-right-buttons { top: 15px; right: 15px; gap: 8px; } /* Etwas mehr Abstand vom Rand */
+    .settings-button, .help-button { width: 40px; height: 40px; font-size: 1.1em; }
+
+    .control-group { align-items: stretch; flex-direction: column; }
+    .control-group div, .date-input-container { width: 100%; flex-basis: auto !important; min-width: auto !important; }
+    /* Höhe der Inputs auf Mobil ggf. anpassen */
+    .control-group input[type="text"], .control-group input[type="date"], #addTaskButton { height: 44px; padding-top: 10px; padding-bottom: 10px; }
+    #addTaskButton { width: 100%; margin-top: 10px; }
+
+    .modal { width: 95%; padding: 20px; }
+    .modal h3 { font-size: 1.2em; }
+}

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do App mit Sidebar v4 - Mit Einstellungen</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body> <div class="top-right-buttons">
+        <button id="settingsBtn" class="settings-button" aria-label="Einstellungen öffnen">
+            <i class="fas fa-cog"></i>
+        </button>
+    </div>
+
+    <div class="app-layout">
+        <aside id="sidebar">
+            <h2>Meine Listen</h2>
+            <nav id="listNav">
+                </nav>
+            <div class="add-list-group">
+                 <input type="text" id="newListInput" placeholder="Neue Liste..." aria-label="Name der neuen Liste">
+                 <button id="addListButton" title="Neue Liste hinzufügen">Liste erstellen</button>
+                 <button id="deleteListButton" title="Aktive Liste löschen">Liste löschen</button>
+            </div>
+        </aside>
+
+        <div id="main-content-wrapper">
+            <div class="controls-area">
+                <div class="control-group">
+                    <div>
+                        <label for="taskInput">Neue Aufgabe für die aktive Liste:</label>
+                        <input type="text" id="taskInput" placeholder="Aufgabentext...">
+                    </div>
+                    <div class="date-input-container">
+                        <label for="dueDateInput">Fällig am (optional):</label>
+                        <input type="date" id="dueDateInput">
+                    </div>
+                    <select id="listSelect" style="display: none;" aria-label="Liste auswählen"></select>
+                    <button id="addTaskButton" title="Aufgabe zur aktiven Liste hinzufügen">Aufgabe +</button>
+                </div>
+            </div>
+            <main id="main-content">
+                <div class="list-content-area" id="listContentArea">
+                    </div>
+            </main>
+        </div>
+    </div>
+
+    <div id="settingsModalOverlay" class="modal-overlay"></div>
+
+    <div id="settingsModal" class="modal settings-modal">
+        <button class="close settings-close" aria-label="Einstellungen schließen">&times;</button>
+        <h3>Einstellungen</h3>
+        <div class="settings-content">
+            <div class="setting-item">
+                <label for="colorPicker">Akzentfarbe:</label>
+                <input type="color" id="colorPicker">
+            </div>
+            <div class="setting-item">
+                 <fieldset>
+                    <legend>Theme</legend>
+                    <div class="radio-group">
+                        <label>
+                            <input type="radio" name="theme" value="light" id="themeLight"> Hell
+                        </label>
+                        <label>
+                            <input type="radio" name="theme" value="dark" id="themeDark"> Dunkel
+                        </label>
+                    </div>
+                 </fieldset>
+             </div>
+             </div>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
