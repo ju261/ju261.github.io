@@ -141,3 +141,52 @@ h1 {
     .settings-button { width: 40px; height: 40px; font-size: 1.1em; }
     .modal { width: 95%; padding: 20px; }
 }
+/* --- Footer für Impressum/Datenschutz --- */
+.legal-footer {
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 40px; /* Abstand zum Hauptinhalt */
+    border-top: 1px solid var(--border-color); /* Linie zur Abtrennung */
+    font-size: 0.9em;
+    width: 100%; /* Nimmt volle Breite ein */
+    background-color: var(--bg-color); /* Passt sich dem Theme an */
+    transition: background-color var(--transition-speed) var(--transition-func),
+                border-color var(--transition-speed) var(--transition-func);
+}
+
+.legal-link {
+    color: var(--text-muted-color); /* Gedämpfte Farbe, passt sich Theme an */
+    text-decoration: none;
+    margin: 0 15px; /* Abstand zwischen den Links */
+    padding: 5px 10px; /* Kleiner Innenabstand für leichte Button-Optik */
+    border: 1px solid transparent; /* Unsichtbarer Rand für Hover */
+    border-radius: var(--border-radius); /* Nutzt globalen Radius */
+    transition: color var(--transition-speed) var(--transition-func),
+                background-color var(--transition-speed) var(--transition-func),
+                border-color var(--transition-speed) var(--transition-func);
+}
+
+.legal-link:hover,
+.legal-link:focus { /* Auch Fokus-Styling */
+    color: var(--accent-color); /* Nutzt Akzentfarbe */
+    background-color: color-mix(in srgb, var(--accent-color) 10%, transparent); /* Leichter Akzent-BG */
+    border-color: color-mix(in srgb, var(--accent-color) 20%, transparent); /* Leichter Akzent-Rand */
+    text-decoration: none; /* Kein Unterstrich beim Hover */
+    outline: none; /* Standard-Fokus-Outline entfernen */
+}
+
+/* Anpassung für den Footer im Login-Container, falls gewünscht */
+/* Falls der Footer immer unter dem Login-Container sein soll, muss er außerhalb platziert werden. */
+/* Wenn er *innerhalb* des Login-Containers sein soll (was weniger üblich ist), */
+/* müsste das HTML anders strukturiert sein. Die aktuelle Lösung platziert ihn global unten. */
+
+/* Responsivität für den Footer (optional, falls nötig) */
+@media (max-width: 768px) {
+    .legal-footer {
+        padding: 15px 0;
+        margin-top: 30px;
+    }
+    .legal-link {
+        margin: 0 10px;
+    }
+}
