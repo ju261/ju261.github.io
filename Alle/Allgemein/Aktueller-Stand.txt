@@ -1,6 +1,0 @@
-Aktueller Stand: Crossline Pack 
-
-
-
-ACURA Stand:
-    - Index wird falsch übernommen
